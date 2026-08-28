@@ -1,0 +1,1949 @@
+# WE GROW KIDS WEBSITE — TASK #4
+
+## Build a Projects Portfolio + Four Initiative Pages
+
+### Website
+
+**WeGrowKids.org**
+
+### Organization
+
+**We Grow Kids LLC**
+
+---
+
+# 1. OVERALL GOAL
+
+Expand the existing WeGrowKids.org website by creating a professional **Projects portfolio** that introduces the major educational and community initiatives being developed or operated through We Grow Kids.
+
+The Projects section should communicate that We Grow Kids is more than a tutoring service. It is an education and youth-development organization building multiple learning environments for children, families, student-athletes, homeschoolers, and community partners.
+
+The four initiatives to feature are:
+
+1. **Creekside Warriors Student Athlete Academy**
+2. **Afrofuturism Discovery Academy**
+3. **Virtual Villages**
+4. **Friday Farm**
+
+Each initiative should have its own dedicated project page.
+
+The website should feel:
+
+* Professional
+* Welcoming
+* Youth-centered
+* Family-centered
+* Innovative
+* Community-rooted
+* Future-focused
+* Educational
+* Culturally responsive
+* Easy to navigate on mobile
+
+Do not make the individual programs feel like disconnected businesses.
+
+They should visually and structurally feel like members of the larger **We Grow Kids ecosystem**.
+
+---
+
+# 2. IMPORTANT DEVELOPMENT RULES
+
+Before making changes:
+
+1. Review the current site structure.
+2. Identify reusable components already being used.
+3. Preserve all existing working functionality.
+4. Do not remove existing pages unless explicitly instructed.
+5. Do not delete the existing **Friday Garden Lab** page.
+6. Preserve all current booking, tutoring, payment, login, contact, calendar, admin, and lead-generation functionality.
+7. Reuse the site's existing design language where appropriate.
+8. Build reusable components rather than duplicating large amounts of code.
+9. Ensure every page works properly on:
+
+   * Desktop
+   * Tablet
+   * Mobile
+10. All new forms should connect to the existing admin/lead infrastructure whenever technically possible.
+
+If exact information is unavailable, use clearly labeled temporary placeholders in the code/content rather than inventing details.
+
+Example:
+
+`[PROGRAM SCHEDULE TO BE CONFIRMED]`
+
+Do not present an unknown detail to website visitors as fact.
+
+---
+
+# 3. MAIN NAVIGATION
+
+Add a main navigation item:
+
+## Projects
+
+Preferred navigation structure:
+
+* Home
+* About
+* Services
+* Projects
+* Tutoring / Booking
+* Resources
+* Contact
+
+Do not radically change the existing navigation if another structure is already established.
+
+Instead, intelligently integrate **Projects** into the current navigation.
+
+---
+
+# 4. NEW URL STRUCTURE
+
+Create the following pages/routes:
+
+### Main Portfolio
+
+`/projects`
+
+### Project Pages
+
+`/projects/creekside-warriors`
+
+`/projects/afrofuturism-discovery-academy`
+
+`/projects/virtual-villages`
+
+`/projects/friday-farm`
+
+Use clean, SEO-friendly routes.
+
+---
+
+# 5. PROJECTS LANDING PAGE
+
+Create a new page titled:
+
+# Projects
+
+Suggested hero headline:
+
+## Building Places Where Kids Can Learn, Create, Belong, and Grow
+
+Supporting copy:
+
+We Grow Kids develops educational experiences that connect academics, creativity, culture, athletics, nature, technology, and community. Explore the projects we are building with students, families, educators, coaches, and community partners.
+
+Include a strong CTA:
+
+**Explore Our Projects**
+
+Optional secondary CTA:
+
+**Partner With We Grow Kids**
+
+---
+
+# 6. PROJECTS GRID
+
+Below the hero, display four large project cards.
+
+Each card should contain:
+
+* Project image
+* Project name
+* One-sentence description
+* Project category or tags
+* Learn More button
+
+---
+
+## PROJECT CARD 1
+
+### Creekside Warriors Student Athlete Academy
+
+Suggested short description:
+
+A small-cohort student-athlete development program combining academics, athletic preparation, mentorship, accountability, and high-school readiness.
+
+Suggested tags:
+
+* Student Athletes
+* Academics
+* Mentorship
+* Athletic Development
+
+CTA:
+
+**Explore Creekside Warriors**
+
+---
+
+## PROJECT CARD 2
+
+### Afrofuturism Discovery Academy
+
+Suggested short description:
+
+An innovative learning community where students explore mathematics, literacy, STEAM, history, communication, aviation, invention, and African diasporic achievement through an Afrofuturist lens.
+
+Suggested tags:
+
+* Afrofuturism
+* STEAM
+* Math
+* Literacy
+* Innovation
+
+CTA:
+
+**Discover the Academy**
+
+---
+
+## PROJECT CARD 3
+
+### Virtual Villages
+
+Suggested short description:
+
+A flexible online learning and support community connecting students, families, educators, mentors, and enrichment opportunities beyond geographic boundaries.
+
+Suggested tags:
+
+* Virtual Learning
+* Homeschool Support
+* Tutoring
+* Community
+
+CTA:
+
+**Enter the Village**
+
+---
+
+## PROJECT CARD 4
+
+### Friday Farm
+
+Suggested short description:
+
+A weekly outdoor learning experience where children connect nature, agriculture, science, art, community, play, and hands-on discovery.
+
+Suggested tags:
+
+* Outdoor Learning
+* Agriculture
+* STEAM
+* Community
+* Nature
+
+CTA:
+
+**Explore Friday Farm**
+
+---
+
+# 7. PROJECT ECOSYSTEM SECTION
+
+After the four cards, create a section explaining how the projects connect.
+
+Suggested headline:
+
+## Different Pathways. One Mission.
+
+Suggested content:
+
+Every child grows differently.
+
+Some children thrive through athletics.
+
+Some through technology and imagination.
+
+Some through hands-on exploration.
+
+Some through small-group academic support.
+
+Some need a village that combines all of these.
+
+We Grow Kids creates multiple pathways while keeping the same goal at the center: helping young people develop the knowledge, confidence, relationships, and opportunities they need to thrive.
+
+Visually show the four projects orbiting or connecting back to:
+
+## WE GROW KIDS
+
+Possible visual:
+
+```
+                    Afrofuturism
+                  Discovery Academy
+                         |
+                         |
+Creekside Warriors — WE GROW KIDS — Virtual Villages
+                         |
+                         |
+                    Friday Farm
+```
+
+This can be represented with cards, lines, icons, or a responsive visual diagram.
+
+---
+
+# 8. PARTNERSHIP SECTION
+
+Create a section for schools, nonprofits, families, coaches, educators, and community organizations.
+
+Headline:
+
+## Build With Us
+
+Copy:
+
+We Grow Kids welcomes partnerships with educators, community organizations, youth programs, coaches, farms, museums, nonprofits, homeschool communities, and organizations interested in creating meaningful learning opportunities for young people.
+
+Buttons:
+
+**Become a Partner**
+
+**Contact We Grow Kids**
+
+---
+
+# 9. SHARED PROJECT PAGE TEMPLATE
+
+All four project pages should use the same general structural framework while allowing different branding, imagery, and content.
+
+Each project page should include:
+
+1. Hero
+2. Quick Facts
+3. Mission
+4. Why the Project Exists
+5. Who It Serves
+6. Program Experience
+7. Core Program Components
+8. Sample Experience / Schedule
+9. Outcomes
+10. What Families Can Expect
+11. FAQ
+12. Interest / Participation CTA
+13. Related We Grow Kids Projects
+
+This consistent structure should make the website feel intentional and professional.
+
+---
+
+# 10. CREEKSIDE WARRIORS PAGE
+
+Route:
+
+`/projects/creekside-warriors`
+
+Page title:
+
+# Creekside Warriors Student Athlete Academy
+
+Possible hero tagline:
+
+## Building Strong Students. Building Strong Athletes. Building Strong Futures.
+
+Alternative:
+
+## Academic Preparation Meets Athletic Development.
+
+---
+
+## HERO DESCRIPTION
+
+Creekside Warriors Student Athlete Academy is designed for young athletes who need an environment that develops the student and the athlete together.
+
+The program combines personalized academics, athletic preparation, mentorship, accountability, leadership development, and preparation for the increased expectations students encounter as they approach high school athletics.
+
+CTA buttons:
+
+**Join the Interest List**
+
+**Learn About the Program**
+
+---
+
+# 11. CREEKSIDE — WHO IT SERVES
+
+Include a section:
+
+## Who Is Creekside For?
+
+Possible groups:
+
+* Middle school student-athletes
+* Students preparing for high-school athletics
+* Athletes considering reclassification
+* Families seeking a small-cohort educational environment
+* Students needing additional academic structure
+* Athletes who benefit from individualized attention
+* Students balancing academics and competitive athletics
+
+Do not make promises regarding college scholarships or Division I recruitment.
+
+The program may prepare students for increasingly competitive athletic environments, but outcomes should never be guaranteed.
+
+---
+
+# 12. CREEKSIDE — CORE PROGRAM AREAS
+
+Create visual cards for:
+
+### Academic Development
+
+Individualized instruction and academic support focused on preparing students for stronger secondary-school performance.
+
+### Mathematics
+
+Structured mathematics instruction including foundational skills, pre-algebra, algebra readiness, and problem solving.
+
+### Language Arts
+
+Reading, writing, communication, vocabulary, literary analysis, and academic expression.
+
+### Athletic Development
+
+Age-appropriate physical conditioning, athletic fundamentals, sports preparation, and accountability.
+
+### Mentorship
+
+Students receive guidance around habits, discipline, confidence, decision-making, and personal responsibility.
+
+### High School Readiness
+
+Students learn what will be expected academically, socially, and athletically as they transition toward high school.
+
+---
+
+# 13. CREEKSIDE — EDUCATIONAL PHILOSOPHY
+
+Include:
+
+## Student First. Athlete Second.
+
+Athletic ability can open doors, but education gives young people the ability to walk through those doors prepared.
+
+Creekside intentionally develops students academically alongside their athletic growth.
+
+---
+
+# 14. CREEKSIDE — WHAT A DAY MAY INCLUDE
+
+Use a visual timeline.
+
+Possible example:
+
+**Academic Check-In**
+
+↓
+
+**Mathematics / Language Arts**
+
+↓
+
+**Independent Work or Project Learning**
+
+↓
+
+**Lunch / Break**
+
+↓
+
+**Athletic Development**
+
+↓
+
+**Mentoring / Goal Setting**
+
+Clearly label this:
+
+**Example Program Flow**
+
+Do not imply this is the permanent schedule unless confirmed.
+
+---
+
+# 15. CREEKSIDE — QUICK FACTS
+
+Create a quick-facts component containing:
+
+* Grades/Ages: `[CONFIRM]`
+* Location: `[CONFIRM]`
+* Program Days: `[CONFIRM]`
+* Program Hours: `[CONFIRM]`
+* Tuition: `[CONFIRM]`
+* Cohort Size: Small cohort
+* Enrollment Status: `[CONFIRM]`
+
+Build this component so these details are easy to update later.
+
+---
+
+# 16. CREEKSIDE INTEREST FORM
+
+This page needs an actual interest form.
+
+Headline:
+
+## Interested in Creekside Warriors?
+
+Fields:
+
+* Parent/Guardian First Name
+* Parent/Guardian Last Name
+* Email
+* Phone
+* Student First Name
+* Student Age
+* Student Grade
+* Primary Sport
+* Current School
+* What are you looking for?
+* Academic Support
+* Athletic Development
+* Reclassification Information
+* Homeschool / Alternative Education
+* Small Cohort Learning
+* General Information
+* Preferred Contact Method
+* Additional Comments
+
+Checkbox:
+
+**I agree to be contacted by We Grow Kids regarding Creekside Warriors Student Athlete Academy.**
+
+Submit button:
+
+**Request Information**
+
+---
+
+# 17. CREEKSIDE LEAD ADMIN INTEGRATION
+
+Interest submissions should feed into the existing admin lead management system.
+
+Each lead should be tagged:
+
+`source: creekside-warriors`
+
+and preferably:
+
+`leadType: project-interest`
+
+Include:
+
+* Date submitted
+* Parent name
+* Student name
+* Email
+* Phone
+* Grade
+* Sport
+* Interest selections
+* Notes
+* Status
+
+Suggested admin statuses:
+
+* New
+* Contacted
+* Follow-Up
+* Tour / Meeting Scheduled
+* Application Started
+* Enrolled
+* Waitlist
+* Closed
+
+Do not create a completely separate lead database if the website already has a functioning lead management system.
+
+Extend the current system where possible.
+
+---
+
+# 18. AFROFUTURISM DISCOVERY ACADEMY PAGE
+
+Route:
+
+`/projects/afrofuturism-discovery-academy`
+
+Title:
+
+# Afrofuturism Discovery Academy
+
+Hero tagline:
+
+## Imagine the Future. Understand the Past. Build What Comes Next.
+
+---
+
+# 19. ADA — INTRODUCTION
+
+Suggested description:
+
+Afrofuturism Discovery Academy is an interdisciplinary learning experience connecting academic growth with imagination, invention, African and African diasporic history, STEAM, communication, storytelling, and future-focused problem solving.
+
+Students are invited not only to study the world—but to imagine how they can shape it.
+
+---
+
+# 20. ADA — CORE LEARNING AREAS
+
+Create cards for:
+
+### Afro-Algebra / Mathematics
+
+### Afrofuturism Is Lit
+
+### FutureScope STEAM
+
+### Aviation
+
+### SPEC Crew
+
+### History & Cultural Exploration
+
+### Limitless Lab
+
+### Student Projects & Showcases
+
+Each card can have a short description.
+
+---
+
+# 21. ADA — EDUCATIONAL MODEL
+
+Create section:
+
+## Learning Across Subjects
+
+Explain that the academy intentionally connects disciplines.
+
+Example:
+
+A student might:
+
+* Read about a Black inventor
+* Analyze the science behind the invention
+* Calculate measurements using mathematics
+* Write a persuasive explanation
+* Build a prototype
+* Present the idea
+* Imagine how the technology could be redesigned for the future
+
+This communicates the interdisciplinary model.
+
+---
+
+# 22. ADA — WHO IT SERVES
+
+Potential audience:
+
+* Elementary and middle-grade learners
+* Homeschool families
+* Students seeking supplemental enrichment
+* Curious and creative learners
+* Students interested in STEAM
+* Students who benefit from culturally responsive learning
+* Families seeking educational community
+
+Use placeholder:
+
+`[CONFIRM CURRENT GRADE RANGE]`
+
+before publishing specific grades if necessary.
+
+---
+
+# 23. ADA — POSSIBLE PROGRAM EXPERIENCE
+
+Include a visual weekly experience area.
+
+Possible categories:
+
+Monday — Mathematics
+
+Tuesday — Literacy
+
+Wednesday — Community / Communication
+
+Thursday — STEAM / Aviation
+
+Friday — Projects / Showcase
+
+Mark clearly:
+
+**Sample Learning Week**
+
+Final schedules should remain editable through the site's content/data structure.
+
+---
+
+# 24. ADA — OUTCOMES
+
+Possible outcomes:
+
+Students strengthen:
+
+* Mathematical reasoning
+* Reading comprehension
+* Writing
+* Communication
+* Research
+* Creativity
+* Collaboration
+* Cultural knowledge
+* Scientific thinking
+* Digital literacy
+* Presentation skills
+* Confidence as learners
+
+Avoid guaranteeing specific academic grade-level gains.
+
+---
+
+# 25. ADA — CTA
+
+Headline:
+
+## Ready to Discover What's Possible?
+
+Buttons:
+
+**Join the Interest List**
+
+**Explore Classes**
+
+**Ask a Question**
+
+If current registration infrastructure exists, connect to it instead of creating duplicate registration systems.
+
+---
+
+# 26. VIRTUAL VILLAGES PAGE
+
+Route:
+
+`/projects/virtual-villages`
+
+Title:
+
+# Virtual Villages
+
+Hero tagline:
+
+## Learning Shouldn't Depend on Your Zip Code.
+
+Alternate:
+
+## It Still Takes a Village—even Online.
+
+---
+
+# 27. VIRTUAL VILLAGES — MISSION
+
+Virtual Villages should represent the online community and educational support side of We Grow Kids.
+
+Suggested explanation:
+
+Virtual Villages connects families with educational support, tutoring, enrichment, mentoring, live learning experiences, resources, and community regardless of geographic location.
+
+The concept should feel like a **digital village**, not simply another collection of Zoom classes.
+
+---
+
+# 28. VIRTUAL VILLAGES — POSSIBLE SERVICES
+
+Create cards for:
+
+### Live Tutoring
+
+### Small Group Learning
+
+### Homeschool Support
+
+### Parent Resources
+
+### Virtual Clubs
+
+### Mentorship
+
+### Project-Based Learning
+
+### Academic Planning
+
+### Community Events
+
+### Guest Educators
+
+### Student Showcases
+
+Only present services as active if they are currently available.
+
+Otherwise mark them:
+
+**Coming Soon**
+
+or
+
+**In Development**
+
+---
+
+# 29. VIRTUAL VILLAGES — HOW IT WORKS
+
+Use a simple four-step model.
+
+### 1. Join the Village
+
+Families create an account or register interest.
+
+### 2. Choose Support
+
+Families select tutoring, classes, projects, or community experiences.
+
+### 3. Learn Together
+
+Students participate in virtual learning experiences.
+
+### 4. Grow Your Learning Network
+
+Families build relationships with educators, mentors, and other learners.
+
+---
+
+# 30. VIRTUAL VILLAGES — AUDIENCE
+
+Possible users:
+
+* Homeschool families
+* Students needing tutoring
+* Families outside Silicon Valley
+* Students seeking enrichment
+* Families seeking culturally responsive education
+* Students needing flexible schedules
+* Small learning communities
+
+---
+
+# 31. VIRTUAL VILLAGES — CTA
+
+Headline:
+
+## Find Your Village
+
+Buttons:
+
+**Join the Village**
+
+**Book Tutoring**
+
+**Explore Learning Opportunities**
+
+Use existing booking/login infrastructure where appropriate.
+
+---
+
+# 32. FRIDAY FARM PAGE
+
+Route:
+
+`/projects/friday-farm`
+
+Title:
+
+# Friday Farm
+
+Hero tagline:
+
+## Get Outside. Get Curious. Grow Something.
+
+Alternative:
+
+## Where Nature Becomes the Classroom.
+
+---
+
+# 33. FRIDAY FARM — CORE CONCEPT
+
+Friday Farm is a recurring outdoor learning experience designed around nature, agriculture, community, science, creativity, physical activity, and discovery.
+
+The experience should intentionally feel different from a traditional classroom.
+
+Possible activities include:
+
+* Gardening
+* Plant science
+* Environmental science
+* Farm exploration
+* Water systems
+* Animal observation
+* Outdoor art
+* Nature journaling
+* Food systems
+* Community building
+* Outdoor games
+* STEAM challenges
+* Family experiences
+
+---
+
+# 34. FRIDAY FARM — IMPORTANT EXISTING PAGE RULE
+
+There is currently a **Friday Garden Lab** page.
+
+DO NOT DELETE IT.
+
+For this phase:
+
+1. Keep Friday Garden Lab intact.
+2. Build Friday Farm separately.
+3. Add code structure that would make it easy later to:
+
+   * Merge the two pages
+   * Redirect Garden Lab to Friday Farm
+   * Make Garden Lab a subsection of Friday Farm
+   * Keep both as separate experiences
+
+Do not make that decision automatically.
+
+---
+
+# 35. FRIDAY FARM — POSSIBLE EXPERIENCE
+
+Create section:
+
+## A Friday Might Look Like...
+
+Example timeline:
+
+### Welcome + Free Exploration
+
+Children arrive, reconnect, and play.
+
+### Farm Discovery
+
+Students explore plants, animals, soil, water, or another natural system.
+
+### Hands-On Learning
+
+A science, gardening, art, engineering, or environmental activity.
+
+### Community Meal / Lunch
+
+Families or students share food and conversation.
+
+### Creative Project
+
+Painting, journaling, building, designing, or making.
+
+### Closing Circle
+
+Reflection, sharing, and preview of the next experience.
+
+Clearly label this:
+
+**Sample Experience**
+
+---
+
+# 36. FRIDAY FARM — EDUCATIONAL CONNECTIONS
+
+Show how outdoor activities connect to academics.
+
+Possible categories:
+
+* Biology
+* Ecology
+* Agriculture
+* Water Science
+* Earth Science
+* Engineering
+* Art
+* Writing
+* Mathematics
+* Nutrition
+* Environmental Stewardship
+
+---
+
+# 37. FRIDAY FARM — WHO IT SERVES
+
+Potential audience:
+
+* Homeschool families
+* Elementary students
+* Middle-grade students
+* Families seeking outdoor learning
+* Children who thrive through hands-on experiences
+* Families seeking community
+
+Use placeholders for:
+
+* Exact ages
+* Location
+* Day/time
+* Cost
+* Drop-off vs parent participation
+* Enrollment limits
+
+---
+
+# 38. FRIDAY FARM — CTA
+
+Headline:
+
+## Come Grow With Us
+
+Buttons:
+
+**Join the Friday Farm List**
+
+**Ask About Upcoming Fridays**
+
+**Partner With Friday Farm**
+
+---
+
+# 39. COMMON “WHAT TO EXPECT” SECTION
+
+Each project should have a customized What to Expect section.
+
+Use icon cards.
+
+Possible themes:
+
+### Small Learning Communities
+
+### Relationships Matter
+
+### Hands-On Experiences
+
+### Student Voice
+
+### Family Communication
+
+### Growth Over Perfection
+
+---
+
+# 40. FAQ SYSTEM
+
+Build a reusable accordion FAQ component.
+
+Every project page should support its own FAQ data.
+
+Suggested questions include:
+
+* What ages or grades can participate?
+* Where does the program meet?
+* Is this a school?
+* Is this a homeschool program?
+* How much does participation cost?
+* Do you offer scholarships?
+* Can students participate in more than one We Grow Kids project?
+* How do I register?
+* Are programs offered year-round?
+* Can organizations partner with We Grow Kids?
+
+Do not answer uncertain questions with invented information.
+
+Use temporary responses such as:
+
+**Program details are currently being finalized. Join the interest list and we will send updated information as it becomes available.**
+
+---
+
+# 41. IMPORTANT LEGAL / PROGRAM LANGUAGE
+
+Avoid describing We Grow Kids programs as accredited schools unless that status exists.
+
+Where appropriate use language such as:
+
+* Educational program
+* Learning academy
+* Enrichment program
+* Supplemental education
+* Homeschool support
+* Academic support
+* Learning community
+* Youth development program
+
+Do not make unsupported claims regarding:
+
+* Accreditation
+* Guaranteed academic improvement
+* Athletic scholarships
+* College recruitment
+* NCAA eligibility
+* Medical outcomes
+* Guaranteed admissions
+
+---
+
+# 42. PROJECT PAGE VISUAL IDENTITIES
+
+Each program can have a subtle visual personality while remaining within the larger We Grow Kids brand.
+
+### Creekside Warriors
+
+Visual feeling:
+
+* Athletic
+* Strong
+* Focused
+* Disciplined
+* Energetic
+
+Possible imagery:
+
+* Student athletes
+* Training
+* Books + athletics
+* Teamwork
+* Coaching
+
+---
+
+### Afrofuturism Discovery Academy
+
+Visual feeling:
+
+* Futuristic
+* Imaginative
+* African diasporic
+* Scientific
+* Creative
+* Exploratory
+
+Possible imagery:
+
+* Students creating
+* Space
+* Technology
+* African-inspired geometric visual language
+* Science
+* Books
+* Invention
+
+Do not overload the page with stereotypical patterns.
+
+Keep it sophisticated and contemporary.
+
+---
+
+### Virtual Villages
+
+Visual feeling:
+
+* Connected
+* Digital
+* Human
+* Collaborative
+* Warm
+
+Possible imagery:
+
+* Learners connecting online
+* Networks
+* Families
+* Digital classrooms
+* Creative collaboration
+
+---
+
+### Friday Farm
+
+Visual feeling:
+
+* Natural
+* Joyful
+* Hands-on
+* Earth-centered
+* Community-oriented
+
+Possible imagery:
+
+* Gardens
+* Farms
+* Soil
+* Children exploring
+* Plants
+* Water
+* Outdoor art
+
+---
+
+# 43. IMAGE HANDLING
+
+Create image placeholders where final photography is unavailable.
+
+Each page should support:
+
+* Hero image
+* Card image
+* Gallery images
+* Optional video thumbnail
+
+Use optimized image formats such as WebP when appropriate.
+
+Always include descriptive alt text.
+
+Do not use massive image files that hurt page speed.
+
+---
+
+# 44. PROJECT DATA ARCHITECTURE
+
+Do not hard-code four completely unrelated pages if a reusable data-driven architecture is practical.
+
+Preferred approach:
+
+Create reusable project components and project data.
+
+Example conceptual structure:
+
+```js
+projects = [
+  {
+    slug: "creekside-warriors",
+    name: "Creekside Warriors Student Athlete Academy",
+    tagline: "...",
+    description: "...",
+    audience: [],
+    programAreas: [],
+    outcomes: [],
+    faq: [],
+    cta: {},
+    status: "",
+  }
+]
+```
+
+Then use shared sections/components where possible.
+
+However, allow individual pages to have unique sections when required.
+
+---
+
+# 45. REUSABLE COMPONENTS
+
+Consider creating components such as:
+
+* ProjectHero
+* ProjectCard
+* ProjectQuickFacts
+* ProjectMission
+* AudienceGrid
+* ProgramFeatureCard
+* ProgramTimeline
+* OutcomesGrid
+* ProjectGallery
+* ProjectFAQ
+* ProjectCTA
+* InterestForm
+* RelatedProjects
+* ProjectStatusBadge
+
+Reuse existing site components where possible.
+
+---
+
+# 46. PROJECT STATUS LABELS
+
+Support optional status labels:
+
+* Enrolling
+* Interest List Open
+* Coming Soon
+* In Development
+* Waitlist
+* Applications Open
+* Seasonal Program
+* Currently Full
+
+These should be controlled through project data so the status can be updated easily.
+
+---
+
+# 47. RELATED PROJECTS
+
+At the bottom of every initiative page, include:
+
+## Explore More From We Grow Kids
+
+Show the other three initiatives.
+
+Example:
+
+A visitor on Creekside sees:
+
+* Afrofuturism Discovery Academy
+* Virtual Villages
+* Friday Farm
+
+This should encourage exploration across the entire We Grow Kids ecosystem.
+
+---
+
+# 48. SITE-WIDE CTA
+
+Include a reusable CTA near the bottom of Projects pages:
+
+## Not Sure Which Program Is Right for Your Family?
+
+Tell us a little about your learner and we'll help you identify possible We Grow Kids opportunities.
+
+Button:
+
+**Contact We Grow Kids**
+
+Optional secondary:
+
+**Book a Consultation**
+
+---
+
+# 49. MOBILE DESIGN
+
+Mobile experience is extremely important.
+
+Requirements:
+
+* No horizontal scrolling
+* Large tap targets
+* Forms easy to complete on phones
+* Collapsible FAQs
+* Cards stack cleanly
+* Navigation remains usable
+* Hero text doesn't overflow
+* Buttons should not become tiny
+* Images should crop intelligently
+* No important content hidden behind hover interactions
+
+---
+
+# 50. ACCESSIBILITY
+
+Follow accessibility best practices.
+
+Requirements:
+
+* Proper semantic heading order
+* Accessible form labels
+* Keyboard navigation
+* Visible focus states
+* Good color contrast
+* Alt text
+* Buttons and links clearly differentiated
+* Error messages associated with form fields
+* Do not rely on color alone to communicate meaning
+
+Target WCAG AA where practical.
+
+---
+
+# 51. SEO
+
+Every project needs unique metadata.
+
+Example:
+
+### Projects
+
+Title:
+
+`Projects | We Grow Kids`
+
+Description:
+
+`Explore We Grow Kids educational programs including Creekside Warriors Student Athlete Academy, Afrofuturism Discovery Academy, Virtual Villages, and Friday Farm.`
+
+---
+
+### Creekside
+
+Title:
+
+`Creekside Warriors Student Athlete Academy | We Grow Kids`
+
+---
+
+### ADA
+
+Title:
+
+`Afrofuturism Discovery Academy | We Grow Kids`
+
+---
+
+### Virtual Villages
+
+Title:
+
+`Virtual Villages | We Grow Kids`
+
+---
+
+### Friday Farm
+
+Title:
+
+`Friday Farm | We Grow Kids`
+
+Also include:
+
+* OpenGraph metadata
+* Social share image support
+* Canonical URLs
+* Logical headings
+* Internal linking
+
+---
+
+# 52. ANALYTICS EVENTS
+
+If analytics already exist, track events such as:
+
+* project_card_clicked
+* creekside_interest_started
+* creekside_interest_submitted
+* ada_interest_clicked
+* virtual_villages_interest_clicked
+* friday_farm_interest_clicked
+* partnership_clicked
+* tutoring_clicked_from_projects
+
+Include the project name as an event property where practical.
+
+Do not add a competing analytics system if one already exists.
+
+---
+
+# 53. ADMIN CONSIDERATIONS
+
+Where practical, allow the administrator to manage:
+
+* Program status
+* Enrollment status
+* Pricing
+* Schedule
+* Location
+* Cohort size
+* Dates
+* CTA destination
+* Program description
+* FAQ
+* Contact email
+* Interest submissions
+
+If the current admin system can reasonably support this, extend it.
+
+If not, structure the project data so these details can easily be edited in code without rebuilding page layouts.
+
+---
+
+# 54. PLACEHOLDER DETAILS
+
+These items still need confirmation and should NOT be invented:
+
+### Creekside
+
+* Final grades
+* Exact location
+* Daily schedule
+* Tuition
+* Enrollment capacity
+* Enrollment status
+
+### Afrofuturism Discovery Academy
+
+* Current grade range
+* Current tuition
+* Exact schedule
+* Enrollment status
+* Scholarship availability
+
+### Virtual Villages
+
+* Formal launch date
+* Exact membership structure
+* Pricing
+* Available services at launch
+
+### Friday Farm
+
+* Exact location
+* Ages
+* Schedule
+* Pricing
+* Parent attendance expectations
+* Capacity
+* Enrollment status
+
+Create obvious configuration entries or TODO comments so these are easy to update.
+
+---
+
+# 55. PROJECT PORTFOLIO PAGE HIERARCHY
+
+Recommended order:
+
+### HERO
+
+↓
+
+### FOUR PROJECT CARDS
+
+↓
+
+### DIFFERENT PATHWAYS, ONE MISSION
+
+↓
+
+### HOW OUR PROJECTS CONNECT
+
+↓
+
+### WHO WE SERVE
+
+Possible categories:
+
+* Students
+* Families
+* Homeschoolers
+* Student Athletes
+* Educators
+* Community Organizations
+
+↓
+
+### BUILD WITH US / PARTNERSHIP CTA
+
+↓
+
+### CONTACT / CONSULTATION CTA
+
+↓
+
+### FOOTER
+
+---
+
+# 56. PROJECT DETAIL PAGE HIERARCHY
+
+Recommended order:
+
+### HERO
+
+↓
+
+### PROGRAM STATUS + QUICK FACTS
+
+↓
+
+### MISSION
+
+↓
+
+### WHY THIS PROJECT EXISTS
+
+↓
+
+### WHO IT SERVES
+
+↓
+
+### PROGRAM COMPONENTS
+
+↓
+
+### WHAT THE EXPERIENCE LOOKS LIKE
+
+↓
+
+### EXPECTED OUTCOMES
+
+↓
+
+### WHAT FAMILIES CAN EXPECT
+
+↓
+
+### FAQ
+
+↓
+
+### INTEREST / REGISTRATION CTA
+
+↓
+
+### RELATED PROJECTS
+
+↓
+
+### SITE FOOTER
+
+---
+
+# 57. TONE OF WEBSITE COPY
+
+Website copy should feel:
+
+* Warm
+* Smart
+* Confident
+* Human
+* Mission-driven
+* Community-centered
+* Future-facing
+
+Avoid:
+
+* Corporate jargon
+* Education buzzword overload
+* Extremely long paragraphs
+* Generic AI language
+* Unsupported promises
+* Making every heading sound like an advertisement
+
+Use short paragraphs, clear headings, meaningful statements, and strong calls to action.
+
+---
+
+# 58. BRAND MESSAGE
+
+Across the Projects area, reinforce this larger message:
+
+## We Grow Kids Creates Learning Ecosystems
+
+We Grow Kids recognizes that learning happens in many places:
+
+* Classrooms
+* Athletic environments
+* Farms
+* Homes
+* Online communities
+* Museums
+* Community spaces
+* Project labs
+* Mentoring relationships
+
+The Projects portfolio should visually communicate this philosophy.
+
+---
+
+# 59. OPTIONAL HOMEPAGE INTEGRATION
+
+After the Projects section is completed, add a homepage teaser without significantly redesigning the homepage.
+
+Suggested heading:
+
+## Explore What We're Building
+
+Display four compact cards:
+
+* Creekside Warriors
+* Afrofuturism Discovery Academy
+* Virtual Villages
+* Friday Farm
+
+CTA:
+
+**View All Projects**
+
+This should link to:
+
+`/projects`
+
+---
+
+# 60. FOOTER INTEGRATION
+
+Add a Projects subsection to the footer.
+
+Example:
+
+### Projects
+
+* Creekside Warriors
+* Afrofuturism Discovery Academy
+* Virtual Villages
+* Friday Farm
+
+---
+
+# 61. ERROR AND FORM HANDLING
+
+Interest forms should include:
+
+* Required field validation
+* Email validation
+* Phone validation where appropriate
+* Clear loading state
+* Error state
+* Success state
+* Protection against duplicate rapid submissions
+* Spam protection if the current site has a solution
+
+Successful Creekside message:
+
+## Thanks for your interest in Creekside Warriors!
+
+We've received your information. A member of the We Grow Kids team will follow up with additional program information.
+
+Include a button:
+
+**Explore More We Grow Kids Projects**
+
+---
+
+# 62. DEVELOPMENT SAFETY
+
+Before changing shared components:
+
+* Determine where else they are used.
+* Avoid introducing breaking changes.
+* Preserve existing API endpoints.
+* Preserve authentication.
+* Preserve database schemas unless a migration is genuinely necessary.
+* Preserve environmental variables.
+* Do not expose private API keys.
+* Do not hard-code secrets.
+
+If database changes are necessary, explain them before making destructive schema changes.
+
+---
+
+# 63. TESTING CHECKLIST
+
+Before considering Task #4 complete, test:
+
+### Navigation
+
+* Projects navigation works
+* Every project card works
+* Browser back button works
+* Footer links work
+* Related project links work
+
+### Responsive
+
+Test:
+
+* Small phone
+* Large phone
+* Tablet
+* Laptop
+* Desktop
+
+### Forms
+
+Test:
+
+* Required fields
+* Invalid email
+* Successful submission
+* Lead appears in admin
+* Project source is recorded
+* Duplicate submissions don't break system
+
+### Accessibility
+
+Test:
+
+* Keyboard navigation
+* Form labels
+* Heading structure
+* Alt text
+* Contrast
+* Mobile tap targets
+
+### Existing Website
+
+Verify:
+
+* Home still works
+* Tutoring still works
+* Booking still works
+* Login still works
+* Admin still works
+* Existing forms still work
+* Friday Garden Lab still works
+
+---
+
+# 64. ACCEPTANCE CRITERIA
+
+Task #4 should not be considered complete until all of the following exist:
+
+* Projects navigation item
+* Projects landing page
+* Four project cards
+* Creekside Warriors page
+* Afrofuturism Discovery Academy page
+* Virtual Villages page
+* Friday Farm page
+* Responsive mobile layouts
+* Reusable project page components
+* Project FAQs
+* Project CTAs
+* Creekside interest form
+* Creekside admin lead integration
+* Related project navigation
+* SEO metadata
+* Accessible forms
+* Friday Garden Lab preserved
+* Existing website functionality preserved
+* Unknown program information clearly configurable
+* No fake dates, prices, locations, or enrollment information
+
+---
+
+# 65. IMPLEMENTATION ORDER
+
+Build in this order.
+
+## Phase 1 — Foundation
+
+1. Audit current routes and components.
+2. Create project data architecture.
+3. Create reusable project components.
+4. Add Projects navigation.
+5. Add Projects route.
+
+## Phase 2 — Portfolio
+
+6. Build Projects hero.
+7. Build four project cards.
+8. Build ecosystem section.
+9. Build partnership CTA.
+10. Add related footer links.
+
+## Phase 3 — Creekside
+
+11. Build Creekside page.
+12. Build quick facts.
+13. Build program cards.
+14. Build sample schedule.
+15. Build FAQ.
+16. Build interest form.
+17. Connect interest form to admin leads.
+18. Test admin data.
+
+## Phase 4 — Afrofuturism Discovery Academy
+
+19. Build ADA page.
+20. Add academic program areas.
+21. Add interdisciplinary model.
+22. Add sample learning week.
+23. Add outcomes.
+24. Add interest CTA.
+
+## Phase 5 — Virtual Villages
+
+25. Build Virtual Villages page.
+26. Add service areas.
+27. Add How It Works section.
+28. Connect tutoring/booking links.
+29. Add interest CTA.
+
+## Phase 6 — Friday Farm
+
+30. Verify Friday Garden Lab remains intact.
+31. Build Friday Farm page.
+32. Add sample Friday timeline.
+33. Add academic connections.
+34. Add interest CTA.
+35. Do not redirect Garden Lab yet.
+
+## Phase 7 — Integration
+
+36. Add homepage Projects teaser.
+37. Add Related Projects section.
+38. Add analytics events.
+39. Add metadata.
+40. Test every route.
+
+## Phase 8 — QA
+
+41. Mobile testing.
+42. Desktop testing.
+43. Accessibility review.
+44. Form testing.
+45. Admin lead testing.
+46. Regression testing of existing website.
+
+---
+
+# 66. DO NOT DO THESE THINGS
+
+Do NOT:
+
+* Delete Friday Garden Lab
+* Invent pricing
+* Invent program dates
+* Invent addresses
+* Invent grade eligibility
+* Claim accreditation
+* Promise athletic scholarships
+* Promise college recruitment
+* Guarantee student outcomes
+* Replace existing booking systems unnecessarily
+* Build duplicate admin systems
+* Remove existing features
+* Publish placeholder language as confirmed information
+* Redesign the entire website just to complete this task
+
+---
+
+# 67. FINAL DEVELOPMENT EXPECTATION
+
+The final Projects section should make a visitor understand within approximately 60 seconds:
+
+1. What We Grow Kids is building.
+2. What the four initiatives are.
+3. Which project might fit their child.
+4. How the initiatives connect.
+5. How to learn more.
+6. How to join an interest list.
+7. How an organization can partner with We Grow Kids.
+
+The Projects portfolio should make We Grow Kids feel like a growing educational ecosystem rather than simply a tutoring website.
+
+---
+
+# 68. FINAL REPLIT INSTRUCTION
+
+Before coding, inspect the current codebase and briefly summarize:
+
+* Existing framework
+* Existing route structure
+* Existing database
+* Existing admin/lead system
+* Existing form infrastructure
+* Existing reusable components
+* Existing Friday Garden Lab route
+* Any potential conflicts with this project
+
+Then implement Task #4 incrementally.
+
+Do not rebuild working systems simply because a different architecture might be cleaner.
+
+Prefer **extension over replacement**.
+
+After implementation, provide a summary of:
+
+1. Files created
+2. Files modified
+3. Routes added
+4. Database/schema changes, if any
+5. Admin functionality added
+6. Remaining placeholders
+7. Items requiring owner confirmation
+8. Testing completed
+9. Any recommended next steps
+
+The objective is to create a polished, scalable Projects portfolio for **WeGrowKids.org** that can grow as each initiative develops.
