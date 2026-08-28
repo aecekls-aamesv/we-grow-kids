@@ -1,0 +1,171 @@
+Build a full professional website for We Grow Kids, a homeschool education support business that serves families with private tutoring, curriculum resources, gardening enrichment classes, and parent support.
+
+The website should feel warm, trustworthy, culturally responsive, family-centered, and professional. The audience is homeschooling parents, charter school families, and parents looking for personalized academic support.
+
+Create the following pages:
+
+1. Home
+2. About
+3. Private Tutoring
+4. Curriculum Resources
+5. Friday Gardening Class
+6. Homeschool Support
+7. Store
+8. Parent Portal / Login
+9. Testimonials
+10. Contact / Book a Call
+11. Policies
+
+Homepage:
+Create a strong hero section with the headline:
+“Helping Homeschool Families Grow Confident Learners”
+
+Subheadline:
+“We Grow Kids provides tutoring, curriculum resources, gardening enrichment, and parent support designed to help children grow academically, creatively, and confidently.”
+
+Add three main buttons:
+“Book Tutoring”
+“Join Friday Gardening Class”
+“Browse Curriculum Resources”
+
+Add a section called “What We Offer” with cards for:
+
+* Private Tutoring
+* Curriculum Resources
+* Friday Gardening Class
+* Homeschool Support
+* Small Group Learning
+
+Private Tutoring Page:
+Include sections for:
+
+* 1-on-1 tutoring
+* Small group tutoring
+* Math support
+* Literacy support
+* Homework help
+* Homeschool learning plans
+* Parent progress updates
+
+Add pricing placeholders:
+
+* 1-on-1 Tutoring: $50/hour
+* Small Group Tutoring: discounted rate
+* Learning Consultation: pricing placeholder
+
+Add a registration form collecting:
+Parent name, student name, grade, subject support needed, learning goals, IEP/504 information if applicable, preferred days/times, email, phone number, and consent to receive email/text updates.
+
+Curriculum Resources Page:
+Create a store-style page with placeholder products:
+
+* Math Mini Lessons
+* Literacy Activities
+* Homeschool Weekly Planner
+* Cultural Learning Units
+* Gardening Science Lessons
+* Afrofuturism-Inspired Learning Activities
+* Parent Teaching Guides
+
+Each resource should have:
+
+* Image placeholder
+* Title
+* Short description
+* Grade level
+* Price placeholder
+* “Add to Cart” or “Download” button
+
+Friday Gardening Class Page:
+Create a page for a Friday morning gardening enrichment class.
+
+Headline:
+“Friday Garden Lab”
+
+Description:
+“A hands-on morning class where students learn science, responsibility, food systems, nature connection, and real-world problem solving through gardening.”
+
+Include sections:
+
+* What students will learn
+* Weekly activities
+* Who this class is for
+* Schedule: Fridays in the morning
+* Location placeholder
+* Registration button
+* Parent permission form
+
+Activities may include:
+
+* Planting seeds
+* Soil science
+* Watering and observation
+* Garden journaling
+* Food justice conversations
+* Measuring plant growth
+* Composting basics
+* Harvesting when available
+
+Homeschool Support Page:
+Include offerings for:
+
+* Parent consultation
+* Weekly learning plan support
+* Charter school vendor-style service explanation
+* Portfolio help
+* Educational goal setting
+* Curriculum planning
+* Student progress check-ins
+
+Parent Portal / Login:
+Create a login section where parents can eventually access:
+
+* Purchased curriculum resources
+* Student tutoring updates
+* Gardening class updates
+* Attendance
+* Assignments
+* Downloadable materials
+* Messages from We Grow Kids
+
+Store:
+Create a store page with sections:
+
+* Curriculum Resources
+* Tutoring Packages
+* Gardening Class Registration
+* Parent Consultations
+* Future Merch
+
+Future merch placeholders:
+
+* We Grow Kids notebooks
+* T-shirts
+* Garden journals
+* Tote bags
+* Parent planners
+
+Contact Page:
+Create a contact form with:
+Name, email, phone, student grade, service interested in, message, and preferred contact method.
+
+Design Style:
+Use a clean, warm, earthy, family-centered design. Suggested colors:
+
+* Deep green
+* Warm gold
+* Cream
+* Brown
+* Soft sky blue
+
+Use garden-inspired visuals, family learning imagery, notebooks, plants, children learning, and warm community-centered design elements.
+
+Make the site mobile-friendly, easy to navigate, and ready for future payment integration through Stripe.
+
+Add clear call-to-action buttons throughout the site:
+
+* Book a Consultation
+* Register Now
+* Browse Resources
+* Contact Us
+* Join the Class
