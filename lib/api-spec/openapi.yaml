@@ -1,0 +1,1844 @@
+openapi: 3.1.0
+info:
+  title: Api
+  version: 0.1.0
+  description: We Grow Kids Business Command Center API
+servers:
+  - url: /api
+    description: Base API path
+tags:
+  - name: health
+    description: Health operations
+  - name: Auth
+    description: Browser and mobile authentication endpoints.
+  - name: admin
+    description: Admin-only operations
+  - name: leads
+    description: Lead and customer CRM
+  - name: bookings
+    description: Scheduling and bookings
+  - name: availability
+    description: Availability slot management
+  - name: automations
+    description: Communication automations
+  - name: integrations
+    description: External service integrations
+  - name: products
+    description: Products management
+  - name: orders
+    description: Sales and orders
+  - name: social
+    description: Social content planner
+  - name: dashboard
+    description: Admin dashboard summary
+
+paths:
+  /healthz:
+    get:
+      operationId: healthCheck
+      tags: [health]
+      summary: Health check
+      responses:
+        "200":
+          description: Healthy
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/HealthStatus"
+
+  # Auth
+  /auth/user:
+    get:
+      tags: [Auth]
+      operationId: getCurrentAuthUser
+      summary: Get the currently authenticated user
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+      responses:
+        '200':
+          description: Auth status resolved successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthUserEnvelope'
+  /login:
+    get:
+      tags: [Auth]
+      operationId: beginBrowserLogin
+      summary: Start the browser OIDC login flow
+      parameters:
+        - name: returnTo
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the OIDC authorization endpoint.
+  /callback:
+    get:
+      tags: [Auth]
+      operationId: handleBrowserLoginCallback
+      summary: Complete the browser OIDC login flow
+      parameters:
+        - name: code
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: state
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: iss
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '302':
+          description: Redirect to the returnTo path on success.
+  /logout:
+    get:
+      tags: [Auth]
+      operationId: logoutBrowserSession
+      summary: Clear the session and begin OIDC logout
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+        - $ref: '#/components/parameters/SessionCookie'
+        - name: returnTo
+          in: query
+          required: false
+          schema:
+            type: string
+            default: /
+      responses:
+        '302':
+          description: Redirect to OIDC provider logout URL.
+  /mobile-auth/token-exchange:
+    post:
+      tags: [Auth]
+      operationId: exchangeMobileAuthorizationCode
+      summary: Exchange a mobile OIDC code for a session token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MobileTokenExchangeRequest'
+      responses:
+        '200':
+          description: Session created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MobileTokenExchangeSuccess'
+        '400':
+          description: Missing or invalid required fields.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '401':
+          description: Token did not contain usable claims.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+        '500':
+          description: Token exchange failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorEnvelope'
+  /mobile-auth/logout:
+    post:
+      tags: [Auth]
+      operationId: logoutMobileSession
+      summary: Delete a mobile session token
+      parameters:
+        - $ref: '#/components/parameters/AuthorizationSessionHeader'
+      responses:
+        '200':
+          description: Logout processed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LogoutSuccess'
+
+  # Dashboard
+  /admin/dashboard/summary:
+    get:
+      tags: [dashboard]
+      operationId: getDashboardSummary
+      summary: Get dashboard summary cards
+      responses:
+        '200':
+          description: Dashboard summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardSummary'
+        '401':
+          description: Unauthorized
+  /admin/dashboard/trends:
+    get:
+      tags: [dashboard]
+      operationId: getDashboardTrends
+      summary: Get dashboard trend data
+      parameters:
+        - name: days
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 30
+      responses:
+        '200':
+          description: Trend data
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DashboardTrends'
+        '401':
+          description: Unauthorized
+  /admin/activity-feed:
+    get:
+      tags: [dashboard]
+      operationId: getActivityFeed
+      summary: Get unified activity feed
+      parameters:
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Activity feed
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ActivityFeedItem'
+
+  # Leads
+  /leads:
+    get:
+      tags: [leads]
+      operationId: listLeads
+      summary: List all leads with optional search and filter
+      parameters:
+        - name: q
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: stage
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: source
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        '200':
+          description: List of leads
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadListResponse'
+    post:
+      tags: [leads]
+      operationId: createLead
+      summary: Create a new lead (public form submission or admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadInput'
+      responses:
+        '201':
+          description: Lead created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lead'
+  /leads/{id}:
+    get:
+      tags: [leads]
+      operationId: getLead
+      summary: Get a lead by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lead
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lead'
+        '404':
+          description: Not found
+    patch:
+      tags: [leads]
+      operationId: updateLead
+      summary: Update a lead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadUpdate'
+      responses:
+        '200':
+          description: Updated lead
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Lead'
+    delete:
+      tags: [leads]
+      operationId: deleteLead
+      summary: Delete a lead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+  /leads/{id}/activities:
+    get:
+      tags: [leads]
+      operationId: getLeadActivities
+      summary: Get all activities for a lead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Activities
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeadActivity'
+    post:
+      tags: [leads]
+      operationId: createLeadActivity
+      summary: Add an activity to a lead
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LeadActivityInput'
+      responses:
+        '201':
+          description: Activity created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LeadActivity'
+
+  # Bookings
+  /bookings:
+    get:
+      tags: [bookings]
+      operationId: listBookings
+      summary: List bookings with optional date range filter
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of bookings
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Booking'
+    post:
+      tags: [bookings]
+      operationId: createBooking
+      summary: Create a new booking
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingInput'
+      responses:
+        '201':
+          description: Booking created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+  /bookings/{id}:
+    get:
+      tags: [bookings]
+      operationId: getBooking
+      summary: Get a booking by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Booking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+    patch:
+      tags: [bookings]
+      operationId: updateBooking
+      summary: Update a booking (reschedule, cancel, etc.)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookingUpdate'
+      responses:
+        '200':
+          description: Updated booking
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Booking'
+
+  # Availability
+  /availability:
+    get:
+      tags: [availability]
+      operationId: listAvailabilitySlots
+      summary: List available appointment slots
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: serviceType
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: availableOnly
+          in: query
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Availability slots
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AvailabilitySlot'
+    post:
+      tags: [availability]
+      operationId: createAvailabilitySlot
+      summary: Create an availability slot (admin)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AvailabilitySlotInput'
+      responses:
+        '201':
+          description: Slot created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AvailabilitySlot'
+  /availability/{id}:
+    delete:
+      tags: [availability]
+      operationId: deleteAvailabilitySlot
+      summary: Delete an availability slot (admin)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+
+  # Automations
+  /automations:
+    get:
+      tags: [automations]
+      operationId: listAutomations
+      summary: List all automation templates
+      responses:
+        '200':
+          description: List of automations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Automation'
+    post:
+      tags: [automations]
+      operationId: createAutomation
+      summary: Create an automation template
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutomationInput'
+      responses:
+        '201':
+          description: Automation created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Automation'
+  /automations/{id}:
+    patch:
+      tags: [automations]
+      operationId: updateAutomation
+      summary: Update an automation (enable/disable, edit template)
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutomationUpdate'
+      responses:
+        '200':
+          description: Updated automation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Automation'
+  /automations/{id}/logs:
+    get:
+      tags: [automations]
+      operationId: getAutomationLogs
+      summary: Get send logs for an automation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Automation logs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AutomationLog'
+  /automations/{id}/test:
+    post:
+      tags: [automations]
+      operationId: testAutomation
+      summary: Send a test message for an automation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AutomationTestRequest'
+      responses:
+        '200':
+          description: Test sent
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AutomationTestResult'
+
+  # Integrations
+  /integrations:
+    get:
+      tags: [integrations]
+      operationId: listIntegrations
+      summary: List all integration statuses
+      responses:
+        '200':
+          description: Integration statuses
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Integration'
+  /integrations/{service}/disconnect:
+    post:
+      tags: [integrations]
+      operationId: disconnectIntegration
+      summary: Disconnect an integration
+      parameters:
+        - name: service
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Disconnected
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+  /integrations/{service}/status:
+    patch:
+      tags: [integrations]
+      operationId: updateIntegrationStatus
+      summary: Update integration status (admin)
+      parameters:
+        - name: service
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IntegrationStatusUpdate'
+      responses:
+        '200':
+          description: Updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Integration'
+
+  # Products
+  /products:
+    get:
+      tags: [products]
+      operationId: listProducts
+      summary: List all products
+      responses:
+        '200':
+          description: Products
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+    post:
+      tags: [products]
+      operationId: createProduct
+      summary: Create a product
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductInput'
+      responses:
+        '201':
+          description: Product created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+  /products/{id}:
+    patch:
+      tags: [products]
+      operationId: updateProduct
+      summary: Update a product
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ProductUpdate'
+      responses:
+        '200':
+          description: Updated product
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+
+  # Orders
+  /orders:
+    get:
+      tags: [orders]
+      operationId: listOrders
+      summary: List orders with optional filters
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: productId
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: paymentStatus
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Orders
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderListResponse'
+    post:
+      tags: [orders]
+      operationId: createOrder
+      summary: Create an order (manual entry)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderInput'
+      responses:
+        '201':
+          description: Order created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/{id}:
+    patch:
+      tags: [orders]
+      operationId: updateOrder
+      summary: Update an order
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrderUpdate'
+      responses:
+        '200':
+          description: Updated order
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Order'
+  /orders/summary:
+    get:
+      tags: [orders]
+      operationId: getSalesSummary
+      summary: Get sales summary stats
+      parameters:
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Sales summary
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SalesSummary'
+
+  # Social Posts
+  /social-posts:
+    get:
+      tags: [social]
+      operationId: listSocialPosts
+      summary: List social posts
+      parameters:
+        - name: platform
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: status
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: startDate
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: endDate
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Social posts
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SocialPost'
+    post:
+      tags: [social]
+      operationId: createSocialPost
+      summary: Create a social post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialPostInput'
+      responses:
+        '201':
+          description: Social post created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialPost'
+  /social-posts/{id}:
+    patch:
+      tags: [social]
+      operationId: updateSocialPost
+      summary: Update a social post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SocialPostUpdate'
+      responses:
+        '200':
+          description: Updated social post
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SocialPost'
+    delete:
+      tags: [social]
+      operationId: deleteSocialPost
+      summary: Delete a social post
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Deleted
+
+components:
+  parameters:
+    AuthorizationSessionHeader:
+      name: Authorization
+      in: header
+      required: false
+      description: Opaque session token — Bearer <sid>.
+      schema:
+        type: string
+    SessionCookie:
+      name: sid
+      in: cookie
+      required: false
+      description: Browser session cookie.
+      schema:
+        type: string
+
+  schemas:
+    HealthStatus:
+      type: object
+      properties:
+        status:
+          type: string
+      required:
+        - status
+
+    # Auth schemas
+    AuthUser:
+      type: object
+      required: [id, email, firstName, lastName, profileImageUrl]
+      properties:
+        id:
+          type: string
+        email:
+          type: [string, 'null']
+        firstName:
+          type: [string, 'null']
+        lastName:
+          type: [string, 'null']
+        profileImageUrl:
+          type: [string, 'null']
+        role:
+          type: [string, 'null']
+    AuthUserEnvelope:
+      type: object
+      required: [user]
+      properties:
+        user:
+          oneOf:
+            - $ref: '#/components/schemas/AuthUser'
+            - type: 'null'
+    MobileTokenExchangeRequest:
+      type: object
+      required: [code, code_verifier, redirect_uri, state]
+      properties:
+        code:
+          type: string
+          minLength: 1
+        code_verifier:
+          type: string
+          minLength: 1
+        redirect_uri:
+          type: string
+          minLength: 1
+        state:
+          type: string
+          minLength: 1
+        nonce:
+          type: string
+          minLength: 1
+    MobileTokenExchangeSuccess:
+      type: object
+      required: [token]
+      properties:
+        token:
+          type: string
+    LogoutSuccess:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+          const: true
+    ErrorEnvelope:
+      type: object
+      required: [error]
+      properties:
+        error:
+          type: string
+
+    # Dashboard
+    DashboardSummary:
+      type: object
+      required: [newInquiries, consultationsBooked, tutoringSessionsThisMonth, conversionRate, bookSales, curriculumSales, totalRevenue, outstandingFollowUps, emailDeliveryRate, openLeads]
+      properties:
+        newInquiries:
+          type: integer
+        consultationsBooked:
+          type: integer
+        tutoringSessionsThisMonth:
+          type: integer
+        conversionRate:
+          type: number
+        bookSales:
+          type: integer
+        curriculumSales:
+          type: integer
+        totalRevenue:
+          type: integer
+        outstandingFollowUps:
+          type: integer
+        emailDeliveryRate:
+          type: number
+        openLeads:
+          type: integer
+    DashboardTrends:
+      type: object
+      required: [inquiriesByDay, revenueByDay, bookingsByDay]
+      properties:
+        inquiriesByDay:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendPoint'
+        revenueByDay:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendPoint'
+        bookingsByDay:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrendPoint'
+    TrendPoint:
+      type: object
+      required: [date, value]
+      properties:
+        date:
+          type: string
+        value:
+          type: number
+    ActivityFeedItem:
+      type: object
+      required: [id, type, description, createdAt]
+      properties:
+        id:
+          type: string
+        type:
+          type: string
+        description:
+          type: string
+        entityType:
+          type: [string, 'null']
+        entityId:
+          type: [integer, 'null']
+        createdAt:
+          type: string
+
+    # Leads
+    Lead:
+      type: object
+      required: [id, parentName, email, stage, emailConsent, smsConsent, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        parentName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: [string, 'null']
+        preferredContact:
+          type: [string, 'null']
+        timezone:
+          type: [string, 'null']
+        learnerFirstName:
+          type: [string, 'null']
+        learnerAge:
+          type: [integer, 'null']
+        learnerGrade:
+          type: [string, 'null']
+        subject:
+          type: [string, 'null']
+        goals:
+          type: [string, 'null']
+        challenges:
+          type: [string, 'null']
+        requestedService:
+          type: [string, 'null']
+        stage:
+          type: string
+        source:
+          type: [string, 'null']
+        assignedAction:
+          type: [string, 'null']
+        emailConsent:
+          type: boolean
+        smsConsent:
+          type: boolean
+        consentTimestamp:
+          type: [string, 'null']
+        notes:
+          type: [string, 'null']
+        preferredDates:
+          type: [string, 'null']
+        hearAboutUs:
+          type: [string, 'null']
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    LeadInput:
+      type: object
+      required: [parentName, email, emailConsent, smsConsent]
+      properties:
+        parentName:
+          type: string
+          minLength: 1
+        email:
+          type: string
+        phone:
+          type: string
+        preferredContact:
+          type: string
+        timezone:
+          type: string
+        learnerFirstName:
+          type: string
+        learnerAge:
+          type: integer
+        learnerGrade:
+          type: string
+        subject:
+          type: string
+        goals:
+          type: string
+        challenges:
+          type: string
+        requestedService:
+          type: string
+        stage:
+          type: string
+        source:
+          type: string
+        emailConsent:
+          type: boolean
+        smsConsent:
+          type: boolean
+        notes:
+          type: string
+        preferredDates:
+          type: string
+        hearAboutUs:
+          type: string
+    LeadUpdate:
+      type: object
+      properties:
+        parentName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        preferredContact:
+          type: string
+        timezone:
+          type: string
+        learnerFirstName:
+          type: string
+        learnerAge:
+          type: integer
+        learnerGrade:
+          type: string
+        subject:
+          type: string
+        goals:
+          type: string
+        challenges:
+          type: string
+        requestedService:
+          type: string
+        stage:
+          type: string
+        source:
+          type: string
+        assignedAction:
+          type: string
+        emailConsent:
+          type: boolean
+        smsConsent:
+          type: boolean
+        notes:
+          type: string
+        preferredDates:
+          type: string
+    LeadListResponse:
+      type: object
+      required: [leads, total]
+      properties:
+        leads:
+          type: array
+          items:
+            $ref: '#/components/schemas/Lead'
+        total:
+          type: integer
+    LeadActivity:
+      type: object
+      required: [id, leadId, type, createdAt]
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: integer
+        type:
+          type: string
+        direction:
+          type: [string, 'null']
+        subject:
+          type: [string, 'null']
+        content:
+          type: [string, 'null']
+        status:
+          type: [string, 'null']
+        performedBy:
+          type: [string, 'null']
+        createdAt:
+          type: string
+    LeadActivityInput:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+        direction:
+          type: string
+        subject:
+          type: string
+        content:
+          type: string
+        status:
+          type: string
+
+    # Bookings
+    Booking:
+      type: object
+      required: [id, type, status, parentName, parentEmail, scheduledDate, scheduledStartTime, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        leadId:
+          type: [integer, 'null']
+        slotId:
+          type: [integer, 'null']
+        type:
+          type: string
+        status:
+          type: string
+        parentName:
+          type: string
+        parentEmail:
+          type: string
+        parentPhone:
+          type: [string, 'null']
+        learnerFirstName:
+          type: [string, 'null']
+        scheduledDate:
+          type: string
+        scheduledStartTime:
+          type: string
+        scheduledEndTime:
+          type: [string, 'null']
+        timezone:
+          type: [string, 'null']
+        zoomMeetingId:
+          type: [string, 'null']
+        zoomJoinUrl:
+          type: [string, 'null']
+        calendarEventId:
+          type: [string, 'null']
+        notes:
+          type: [string, 'null']
+        adminNotes:
+          type: [string, 'null']
+        subject:
+          type: [string, 'null']
+        cancellationReason:
+          type: [string, 'null']
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    BookingInput:
+      type: object
+      required: [type, parentName, parentEmail, scheduledDate, scheduledStartTime]
+      properties:
+        leadId:
+          type: integer
+        slotId:
+          type: integer
+        type:
+          type: string
+        parentName:
+          type: string
+        parentEmail:
+          type: string
+        parentPhone:
+          type: string
+        learnerFirstName:
+          type: string
+        scheduledDate:
+          type: string
+        scheduledStartTime:
+          type: string
+        scheduledEndTime:
+          type: string
+        timezone:
+          type: string
+        notes:
+          type: string
+        subject:
+          type: string
+    BookingUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+        scheduledDate:
+          type: string
+        scheduledStartTime:
+          type: string
+        scheduledEndTime:
+          type: string
+        timezone:
+          type: string
+        adminNotes:
+          type: string
+        cancellationReason:
+          type: string
+        slotId:
+          type: integer
+
+    # Availability
+    AvailabilitySlot:
+      type: object
+      required: [id, date, startTime, endTime, serviceType, isBooked, createdAt]
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        serviceType:
+          type: string
+        isBooked:
+          type: boolean
+        notes:
+          type: [string, 'null']
+        createdAt:
+          type: string
+    AvailabilitySlotInput:
+      type: object
+      required: [date, startTime, endTime]
+      properties:
+        date:
+          type: string
+        startTime:
+          type: string
+        endTime:
+          type: string
+        serviceType:
+          type: string
+        notes:
+          type: string
+
+    # Automations
+    Automation:
+      type: object
+      required: [id, name, trigger, channel, enabled, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        trigger:
+          type: string
+        channel:
+          type: string
+        enabled:
+          type: boolean
+        delayMinutes:
+          type: [integer, 'null']
+        emailSubjectTemplate:
+          type: [string, 'null']
+        emailBodyTemplate:
+          type: [string, 'null']
+        smsBodyTemplate:
+          type: [string, 'null']
+        requiresEmailConsent:
+          type: boolean
+        requiresSmsConsent:
+          type: boolean
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    AutomationInput:
+      type: object
+      required: [name, trigger, channel]
+      properties:
+        name:
+          type: string
+        trigger:
+          type: string
+        channel:
+          type: string
+        delayMinutes:
+          type: integer
+        emailSubjectTemplate:
+          type: string
+        emailBodyTemplate:
+          type: string
+        smsBodyTemplate:
+          type: string
+        requiresEmailConsent:
+          type: boolean
+        requiresSmsConsent:
+          type: boolean
+    AutomationUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        trigger:
+          type: string
+        channel:
+          type: string
+        enabled:
+          type: boolean
+        delayMinutes:
+          type: integer
+        emailSubjectTemplate:
+          type: string
+        emailBodyTemplate:
+          type: string
+        smsBodyTemplate:
+          type: string
+        requiresEmailConsent:
+          type: boolean
+        requiresSmsConsent:
+          type: boolean
+    AutomationLog:
+      type: object
+      required: [id, automationId, channel, recipient, status, createdAt]
+      properties:
+        id:
+          type: integer
+        automationId:
+          type: integer
+        leadId:
+          type: [integer, 'null']
+        bookingId:
+          type: [integer, 'null']
+        channel:
+          type: string
+        recipient:
+          type: string
+        subject:
+          type: [string, 'null']
+        body:
+          type: [string, 'null']
+        status:
+          type: string
+        errorMessage:
+          type: [string, 'null']
+        providerMessageId:
+          type: [string, 'null']
+        sentAt:
+          type: [string, 'null']
+        createdAt:
+          type: string
+    AutomationTestRequest:
+      type: object
+      required: [recipientEmail]
+      properties:
+        recipientEmail:
+          type: string
+        recipientPhone:
+          type: string
+    AutomationTestResult:
+      type: object
+      required: [success]
+      properties:
+        success:
+          type: boolean
+        message:
+          type: [string, 'null']
+
+    # Integrations
+    Integration:
+      type: object
+      required: [id, service, status, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        service:
+          type: string
+        status:
+          type: string
+        displayName:
+          type: [string, 'null']
+        accountEmail:
+          type: [string, 'null']
+        lastSyncAt:
+          type: [string, 'null']
+        lastError:
+          type: [string, 'null']
+        metadata:
+          type: [string, 'null']
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    IntegrationStatusUpdate:
+      type: object
+      properties:
+        status:
+          type: string
+        displayName:
+          type: string
+        accountEmail:
+          type: string
+        lastError:
+          type: string
+        metadata:
+          type: string
+
+    # Products
+    Product:
+      type: object
+      required: [id, name, type, priceInCents, active, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+        sku:
+          type: [string, 'null']
+        description:
+          type: [string, 'null']
+        priceInCents:
+          type: integer
+        active:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    ProductInput:
+      type: object
+      required: [name, type, priceInCents]
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        sku:
+          type: string
+        description:
+          type: string
+        priceInCents:
+          type: integer
+        active:
+          type: string
+    ProductUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+        sku:
+          type: string
+        description:
+          type: string
+        priceInCents:
+          type: integer
+        active:
+          type: string
+
+    # Orders
+    Order:
+      type: object
+      required: [id, buyerName, buyerEmail, quantity, grossAmountInCents, discountAmountInCents, refundAmountInCents, netAmountInCents, paymentStatus, fulfillmentStatus, orderDate, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        productId:
+          type: [integer, 'null']
+        leadId:
+          type: [integer, 'null']
+        buyerName:
+          type: string
+        buyerEmail:
+          type: string
+        quantity:
+          type: integer
+        grossAmountInCents:
+          type: integer
+        discountAmountInCents:
+          type: integer
+        refundAmountInCents:
+          type: integer
+        netAmountInCents:
+          type: integer
+        paymentStatus:
+          type: string
+        fulfillmentStatus:
+          type: string
+        source:
+          type: [string, 'null']
+        externalOrderId:
+          type: [string, 'null']
+        dataSource:
+          type: [string, 'null']
+        notes:
+          type: [string, 'null']
+        orderDate:
+          type: string
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    OrderInput:
+      type: object
+      required: [buyerName, buyerEmail, quantity, grossAmountInCents, netAmountInCents, orderDate]
+      properties:
+        productId:
+          type: integer
+        leadId:
+          type: integer
+        buyerName:
+          type: string
+        buyerEmail:
+          type: string
+        quantity:
+          type: integer
+        grossAmountInCents:
+          type: integer
+        discountAmountInCents:
+          type: integer
+        refundAmountInCents:
+          type: integer
+        netAmountInCents:
+          type: integer
+        paymentStatus:
+          type: string
+        fulfillmentStatus:
+          type: string
+        source:
+          type: string
+        notes:
+          type: string
+        orderDate:
+          type: string
+    OrderUpdate:
+      type: object
+      properties:
+        paymentStatus:
+          type: string
+        fulfillmentStatus:
+          type: string
+        notes:
+          type: string
+        refundAmountInCents:
+          type: integer
+        netAmountInCents:
+          type: integer
+    OrderListResponse:
+      type: object
+      required: [orders, total]
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/Order'
+        total:
+          type: integer
+    SalesSummary:
+      type: object
+      required: [totalRevenue, totalOrders, bookRevenue, curriculumRevenue, averageOrderValue]
+      properties:
+        totalRevenue:
+          type: integer
+        totalOrders:
+          type: integer
+        bookRevenue:
+          type: integer
+        curriculumRevenue:
+          type: integer
+        averageOrderValue:
+          type: integer
+
+    # Social
+    SocialPost:
+      type: object
+      required: [id, platform, status, createdAt, updatedAt]
+      properties:
+        id:
+          type: integer
+        platform:
+          type: string
+        campaign:
+          type: [string, 'null']
+        caption:
+          type: [string, 'null']
+        mediaUrl:
+          type: [string, 'null']
+        mediaType:
+          type: [string, 'null']
+        scheduledAt:
+          type: [string, 'null']
+        publishedAt:
+          type: [string, 'null']
+        status:
+          type: string
+        approvedBy:
+          type: [string, 'null']
+        externalPostId:
+          type: [string, 'null']
+        likes:
+          type: [string, 'null']
+        comments:
+          type: [string, 'null']
+        reach:
+          type: [string, 'null']
+        errorMessage:
+          type: [string, 'null']
+        notes:
+          type: [string, 'null']
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+    SocialPostInput:
+      type: object
+      required: [platform]
+      properties:
+        platform:
+          type: string
+        campaign:
+          type: string
+        caption:
+          type: string
+        mediaUrl:
+          type: string
+        mediaType:
+          type: string
+        scheduledAt:
+          type: string
+        status:
+          type: string
+        notes:
+          type: string
+    SocialPostUpdate:
+      type: object
+      properties:
+        platform:
+          type: string
+        campaign:
+          type: string
+        caption:
+          type: string
+        mediaUrl:
+          type: string
+        mediaType:
+          type: string
+        scheduledAt:
+          type: string
+        status:
+          type: string
+        approvedBy:
+          type: string
+        notes:
+          type: string
+        errorMessage:
+          type: string
