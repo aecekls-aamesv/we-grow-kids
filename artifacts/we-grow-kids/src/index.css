@@ -1,0 +1,143 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-card-border: hsl(var(--card-border));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-popover-border: hsl(var(--popover-border));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-primary-border: var(--primary-border);
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-secondary-border: var(--secondary-border);
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-muted-border: var(--muted-border);
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-accent-border: var(--accent-border);
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-destructive-border: var(--destructive-border);
+
+  --font-sans: "Outfit", sans-serif;
+  --font-serif: "Fraunces", serif;
+  --font-mono: monospace;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root {
+  /* Earthy Warm Palette */
+  /* Light green background */
+  --background: 100 40% 82%;
+  /* Dark brown foreground */
+  --foreground: 25 33% 18%;
+  
+  --border: 30 20% 85%;
+  --input: 30 20% 85%;
+  --ring: 104 38% 21%; /* Deep green */
+
+  /* Cards: darker green, floating above the lighter page background */
+  --card: 100 30% 54%;
+  --card-foreground: 25 40% 12%;
+  --card-border: 104 32% 38%;
+
+  --popover: 45 45% 98%;
+  --popover-foreground: 25 33% 18%;
+  --popover-border: 30 20% 88%;
+
+  /* Primary: Deep Green */
+  --primary: 104 38% 21%;
+  --primary-foreground: 40 40% 96%;
+
+  /* Secondary: Warm Gold */
+  --secondary: 35 48% 64%;
+  --secondary-foreground: 25 33% 18%;
+
+  /* Muted: Light Sand */
+  --muted: 45 30% 90%;
+  --muted-foreground: 25 15% 40%;
+
+  /* Accent: Soft Sky Blue */
+  --accent: 216 60% 85%;
+  --accent-foreground: 216 70% 30%;
+
+  --destructive: 0 70% 50%;
+  --destructive-foreground: 0 0% 100%;
+
+  --radius: 0.75rem;
+
+  --app-font-sans: 'Outfit', sans-serif;
+  --app-font-serif: 'Fraunces', serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+@keyframes button-glitter-sweep {
+  0% {
+    transform: translateX(-160%) skewX(-20deg);
+  }
+  55%, 100% {
+    transform: translateX(260%) skewX(-20deg);
+  }
+}
+
+.btn-glitter {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.btn-glitter::before {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: 0;
+  width: 35%;
+  height: 140%;
+  z-index: -1;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.75) 45%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 100%
+  );
+  transform: translateX(-160%) skewX(-20deg);
+  animation: button-glitter-sweep 3.2s ease-in-out infinite;
+  animation-delay: 1.2s;
+  pointer-events: none;
+}
