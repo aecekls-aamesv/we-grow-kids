@@ -1,1 +1,2 @@
 - [Vite artifact build environment](vite-build-requires-runtime-env.md) — local builds require explicit PORT and BASE_PATH values.
+- [GitHub connector write throttling](github-connector-write-throttling.md) — burst GitHub writes can be Cloudflare-blocked; native SDK access is API-proxy only, not direct Git auth.
