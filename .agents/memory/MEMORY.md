@@ -1,0 +1,1 @@
+- [Vite artifact build environment](vite-build-requires-runtime-env.md) — local builds require explicit PORT and BASE_PATH values.

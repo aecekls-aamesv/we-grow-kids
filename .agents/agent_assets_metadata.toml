@@ -1,0 +1,91 @@
+uploads = []
+
+[[generated]]
+id = "wA_26JpfpT6FJE4tvr1Cg"
+uri = "file://artifacts/we-grow-kids/src/assets/hero-learning.png"
+type = "image"
+title = "African American kids learning"
+
+[[generated]]
+id = "5rf92KIyN_22DYxIIhnlh"
+uri = "file://artifacts/we-grow-kids/src/assets/gardening-class.png"
+type = "image"
+title = "African American kids gardening"
+
+[[generated]]
+id = "-pTuWk7youQhVTfTEPr8A"
+uri = "file://artifacts/we-grow-kids/src/assets/tutoring-session.png"
+type = "image"
+title = "African American tutoring session"
+
+[[generated]]
+id = "tfeQXwRWu19NXLLQQyvMX"
+uri = "file://artifacts/we-grow-kids/src/assets/curriculum-materials.png"
+type = "image"
+title = "Afrocentric curriculum materials"
+
+[[generated]]
+id = "e87Zkyqoz9XL-u_zspoPv"
+uri = "file://artifacts/we-grow-kids/src/assets/math-mini.png"
+type = "image"
+title = "Math mini lessons"
+
+[[generated]]
+id = "6i9APPid3fBZl6dt4yjzg"
+uri = "file://artifacts/we-grow-kids/src/assets/literacy.png"
+type = "image"
+title = "Literacy activities"
+
+[[generated]]
+id = "e0Hpl_EubcHJDiuvzhsI0"
+uri = "file://artifacts/we-grow-kids/src/assets/planner.png"
+type = "image"
+title = "Homeschool planner"
+
+[[generated]]
+id = "gj9vG3cIHPtAq0nlAzQZQ"
+uri = "file://artifacts/we-grow-kids/src/assets/cultural.png"
+type = "image"
+title = "Cultural learning units"
+
+[[generated]]
+id = "GK9y4pj-ZNCYGRCL1DORq"
+uri = "file://artifacts/we-grow-kids/src/assets/garden-science.png"
+type = "image"
+title = "Planting seeds"
+
+[[generated]]
+id = "M1gkQyfBxBshuDtfh-ro5"
+uri = "file://artifacts/we-grow-kids/src/assets/afrofuturism.png"
+type = "image"
+title = "Afrofuturism learning activities"
+
+[[generated]]
+id = "lkqekJiERych8Apo_IGuF"
+uri = "file://artifacts/we-grow-kids/src/assets/parent-guide.png"
+type = "image"
+title = "Parent teaching guide"
+
+[[generated]]
+id = "4lrRwfB6oC33IB3XQVbkl"
+uri = "file://artifacts/we-grow-kids/src/assets/about-hero.png"
+type = "image"
+title = "African American family learning"
+
+[[generated]]
+id = "tuRECH32NyhU4T3uXEwOz"
+uri = "file://artifacts/we-grow-kids/src/assets/math-lesson.png"
+type = "image"
+title = "African American child math"
+
+[[outputs]]
+id = "u6e5T9eHcP6p1O3pYdiAQ"
+uri = "file://artifacts/we-grow-kids/src/assets/math-lesson.jpg"
+type = "image"
+title = "Children doing math with manipulatives, warm lighting"
+
+[[outputs]]
+id = "0jKreeMr20VYmzV-qmZXP"
+uri = "file://artifacts/we-grow-kids/src/assets/about-hero.jpg"
+type = "image"
+title = "Community of children learning together outside, diverse group"
